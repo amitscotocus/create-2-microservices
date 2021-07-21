@@ -1,0 +1,78 @@
+Step 1- composer create-project --prefer-dist laravel/laravel project_2 "5.8.*"
+
+-----------------------
+Step 2 - Go to in project 
+
+cd project_1
+
+-----------------------
+
+StepA-		composer require laravel/passport
+		composer require laravel/passport=~4.0   (For Laravel version 5.5)
+----------
+config/app.php in providers
+
+step3-		Laravel\Passport\PassportServiceProvider::class,
+--------------
+set database from .env file 
+
+step4-		php artisan migrate
+--------------------
+app/providers/AppServiceProvider.php
+
+(If requires migrate time)
+Schema::defaultStringLength(191);
+-------------------------
+
+step5-		php artisan passport:install
+-------------------------
+First open "App\User"
+
+replace from User extents -
+
+in top - 		use Laravel\Passport\HasApiTokens;
+
+
+class User extends Authenticatable
+{
+    use HasApiTokens, Notifiable;
+}
+
+----------------------------------------
+app/http/kernel.php
+
+(in Route routeMiddleware)
+
+'client_credentials' => \Laravel\Passport\Http\Middleware\CheckClientCredentials::class,
+----------------------
+
+app/providers/AuthServiceProvider.php 
+
+in top -			use Laravel\Passport\Passport;
+in function boot()-		Passport::routes();
+------------------------
+config/auth.php of api'drivers (replace token)
+
+'driver' => 'passport',
+--------------------------
+
+Route/api.php
+
+Route::group([
+    'prefix' => 'v1/project-api'
+], function () {
+	
+	
+});
+-----------------------
+Create 2nd Project as same process
+
+-----------------------
+After that create Virtual Hosts
+---------------------------------
+C:\xampp\apache\conf\extra\httpd-vhosts.conf
+
+C:\Windows\System32\drivers\etc\hosts
+------------------------------------
+    ServerName http://project-a
+	ServerName http://project-b
