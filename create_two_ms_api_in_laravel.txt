@@ -9,7 +9,7 @@ cd project_1
 -----------------------
 
 StepA-		composer require laravel/passport
-		    composer require laravel/passport:7.5.1
+		        composer require laravel/passport:7.5.1
 ----------
 config/app.php in providers
 
