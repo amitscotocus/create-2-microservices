@@ -1,5 +1,5 @@
 Step 1- composer create-project --prefer-dist laravel/laravel project-a "5.8.*"
-	    composer create-project --prefer-dist laravel/laravel project-b "5.8.*"
+	     composer create-project --prefer-dist laravel/laravel project-b "5.8.*"
 
 -----------------------
 Step 2 - Go to in project 
